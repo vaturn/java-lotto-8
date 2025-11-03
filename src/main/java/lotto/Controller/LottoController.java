@@ -23,13 +23,32 @@ public class LottoController {
 
     public void showResult(Lotto winningLotto, int bonusNumber){
         int[] matchCounts = calculateResult(winningLotto, bonusNumber);
+        double profit = calculateProfit(matchCounts);
+        showResultAll(matchCounts, profit);
 
+    }
+
+    private void showResultAll(int[] matchCounts, double profit){
         System.out.println("당첨 통계\n---------------------");
-        System.out.printf("3개 일치 (%,d원) - %d개%n", PRIZE_MONEY[3], matchCounts[3]);
-        System.out.printf("4개 일치 (%,d원) - %d개%n", PRIZE_MONEY[4], matchCounts[4]);
-        System.out.printf("5개 일치 (%,d원) - %d개%n", PRIZE_MONEY[5], matchCounts[5]);
-        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개%n", BONUS_PRIZE_MONEY, matchCounts[7]);
-        System.out.printf("6개 일치 (%,d원) - %d개%n", PRIZE_MONEY[6], matchCounts[6]);
+        System.out.printf("3개 일치 (%,d원) - %d개\n", PRIZE_MONEY[3], matchCounts[3]);
+        System.out.printf("4개 일치 (%,d원) - %d개\n", PRIZE_MONEY[4], matchCounts[4]);
+        System.out.printf("5개 일치 (%,d원) - %d개\n", PRIZE_MONEY[5], matchCounts[5]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", BONUS_PRIZE_MONEY, matchCounts[7]);
+        System.out.printf("6개 일치 (%,d원) - %d개\n", PRIZE_MONEY[6], matchCounts[6]);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
+    }
+
+    private double calculateProfit(int[] matchCounts){
+        long totalPrize = 0L;
+
+        for (int i = 3; i <= 6; i++) {
+            totalPrize += (long) matchCounts[i] * PRIZE_MONEY[i];
+        }
+        totalPrize += (long) matchCounts[7] * 30000000; // 5개+보너스 상금
+
+        long totalSpent = (long) lottos.size() * 1000;
+
+        return ((double) totalPrize / totalSpent) * 100;
     }
 
     private int[] calculateResult(Lotto winningLotto, int bonusNumber){
