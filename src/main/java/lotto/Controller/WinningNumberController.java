@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import lotto.InputConsole.ConsoleView;
 import lotto.InputConsole.WinningNumberView;
+import lotto.Model.Lotto;
 import lotto.Parser.Parser;
 import lotto.Parser.WinningNumberParser;
 
@@ -12,13 +13,13 @@ public class WinningNumberController {
     ConsoleView winningNumberView = new WinningNumberView();
     Parser<List<Integer>> winningNumberParser = new WinningNumberParser();
 
-    public List<Integer> getWinningNumberWithRetry() {
+    public Lotto getWinningNumberWithRetry() {
         int currentAttemptCounts = 1;
         IllegalArgumentException illegalArgumentException = null;
 
         while (currentAttemptCounts <= MAX_ATTEMPT_COUNT) {
             try {
-                return getWinningNumber();
+                return new Lotto(getWinningNumber());
             } catch (IllegalArgumentException e) {
                 currentAttemptCounts++;
                 illegalArgumentException = e;

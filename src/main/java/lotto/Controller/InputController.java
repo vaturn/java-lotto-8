@@ -13,7 +13,7 @@ public class InputController {
     }
 
     public Lotto getWinning(){
-        return new Lotto(winningNumberController.getWinningNumberWithRetry());
+        return winningNumberController.getWinningNumberWithRetry();
     }
 
     public int getBonus(){

@@ -36,21 +36,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if(!isCorrectSize())
+        if(!isCorrectSize(numbers))
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COUNT_LOTTO.getMessage());
 
-        if(!isCorrectRange())
+        if(!isCorrectRange(numbers))
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_LOTTO.getMessage());
 
-        if(hasDuplicate())
+        if(hasDuplicate(numbers))
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER_LOTTO.getMessage());
     }
 
-    private boolean hasDuplicate() {
+    private boolean hasDuplicate(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
     }
 
-    private boolean isCorrectRange(){
+    private boolean isCorrectRange(List<Integer> numbers){
         for(int number: numbers){
             if(number < MIN_NUMBER || number > MAX_NUMBER)
                 return false;
@@ -58,7 +58,7 @@ public class Lotto {
         return true;
     }
 
-    private boolean isCorrectSize(){
+    private boolean isCorrectSize(List<Integer> numbers){
         return numbers.size() == SIZE_LOTTO;
     }
 }
