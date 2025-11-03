@@ -3,7 +3,7 @@ package lotto.InputConsole;
 import camp.nextstep.edu.missionutils.Console;
 
 abstract class ConsoleView {
-    protected String getInput(){
+    public String getInput(){
         printPromptBeforeInput();
 
         return readLine();
