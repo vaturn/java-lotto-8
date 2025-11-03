@@ -5,6 +5,8 @@ public enum ExceptionMessage {
     INVALID_COUNT_LOTTO("로또 번호는 6개 입력해야합니다."),
     INVALID_NUMBER_LOTTO("로또 번호는 1~45입니다."),
     DUPLICATED_NUMBER_LOTTO("로또 번호는 중복될 수 없습니다."),
+    IS_NOT_POSITIVE("양의 정수를 입력해야합니다."),
+    INVALID_UNIT("복권을 1000원 단위로 구매해야 합니다."),
     INVALID_NUMBER("정수가 아닙니다.");
 
     private final String message;
