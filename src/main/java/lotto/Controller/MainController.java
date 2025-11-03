@@ -8,7 +8,7 @@ public class MainController {
     public void run(){
         int purchaseAmount = inputController.getPurchase();
 
-        lottoController.purchaseLotto(purchaseAmount);
+        lottoController.purchaseLottos(purchaseAmount);
 
         inputController.getWinning();
 

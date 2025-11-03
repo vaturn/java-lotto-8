@@ -20,7 +20,7 @@ public class Lotto {
     }
 
     public void printLotto(){
-        System.out.println(formatLotto());
+        System.out.println("[" + formatLotto() + "]");
     }
 
     public int countOverlap(List<Integer> winningNumbers){
