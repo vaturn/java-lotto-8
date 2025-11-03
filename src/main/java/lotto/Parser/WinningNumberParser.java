@@ -1,5 +1,7 @@
 package lotto.Parser;
 
+import lotto.Exception.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class WinningNumberParser implements Parser<List<Integer>>{
     @Override
     public List<Integer> parse(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.getMessage());
         }
 
         String[] parts = input.split(",");
