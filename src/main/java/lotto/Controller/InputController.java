@@ -1,64 +1,22 @@
 package lotto.Controller;
 
-import lotto.InputConsole.BonusNumber;
-import lotto.InputConsole.ConsoleView;
-import lotto.InputConsole.PurchaseAmountView;
-import lotto.InputConsole.WinningNumberView;
+import lotto.Model.Lotto;
 
 public class InputController {
-    private static final int MAX_ATTEMPT_COUNT = 3;
-    ConsoleView purchaseView = new PurchaseAmountView();
-    ConsoleView winningView = new WinningNumberView();
-    ConsoleView bonusView = new BonusNumber();
 
-    public String getPurchase(){
-        int currentAttemptCounts = 1;
-        IllegalArgumentException illegalArgumentException = null;
+    PurchaseAmountController purchaseAmountController = new PurchaseAmountController();
+    WinningNumberController winningNumberController = new WinningNumberController();
+    BonusNumberController bonusNumberController = new BonusNumberController();
 
-        while (currentAttemptCounts <= MAX_ATTEMPT_COUNT) {
-            try {
-                return purchaseView.getInput();
-            } catch (IllegalArgumentException e) {
-                currentAttemptCounts++;
-                illegalArgumentException = e;
-
-                System.out.println(e.getMessage());
-            }
-        }
-        throw illegalArgumentException;
+    public int getPurchase(){
+        return purchaseAmountController.getPurchaseAmountWithRetry();
     }
 
-    public String getWinning(){
-        int currentAttemptCounts = 1;
-        IllegalArgumentException illegalArgumentException = null;
-
-        while (currentAttemptCounts <= MAX_ATTEMPT_COUNT) {
-            try {
-                return winningView.getInput();
-            } catch (IllegalArgumentException e) {
-                currentAttemptCounts++;
-                illegalArgumentException = e;
-
-                System.out.println(e.getMessage());
-            }
-        }
-        throw illegalArgumentException;
+    public Lotto getWinning(){
+        return new Lotto(winningNumberController.getWinningNumberWithRetry());
     }
 
-    public String getBonus(){
-        int currentAttemptCounts = 1;
-        IllegalArgumentException illegalArgumentException = null;
-
-        while (currentAttemptCounts <= MAX_ATTEMPT_COUNT) {
-            try {
-                return bonusView.getInput();
-            } catch (IllegalArgumentException e) {
-                currentAttemptCounts++;
-                illegalArgumentException = e;
-
-                System.out.println(e.getMessage());
-            }
-        }
-        throw illegalArgumentException;
+    public int getBonus(){
+        return bonusNumberController.getBonusNumberWithRetry();
     }
 }
