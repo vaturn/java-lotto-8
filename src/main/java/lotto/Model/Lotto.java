@@ -19,6 +19,10 @@ public class Lotto {
                 .toList();
     }
 
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+
     public void printLotto(){
         System.out.println("[" + formatLotto() + "]");
     }

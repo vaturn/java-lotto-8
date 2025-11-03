@@ -1,6 +1,8 @@
 package lotto.Controller;
 
 
+import lotto.Model.Lotto;
+
 public class MainController {
     InputController inputController = new InputController();
     LottoController lottoController = new LottoController();
@@ -10,8 +12,10 @@ public class MainController {
 
         lottoController.purchaseLottos(purchaseAmount);
 
-        inputController.getWinning();
+        Lotto winningLotto = inputController.getWinning();
 
-        inputController.getBonus();
+        int bonusNumber = inputController.getBonus();
+
+        lottoController.showResult(winningLotto, bonusNumber);
     }
 }
